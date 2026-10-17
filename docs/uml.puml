@@ -1,0 +1,80 @@
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+class Client {
+  +{static} main(args : String[]) : void
+}
+class HomeTheaterFacade {
+  -dvd : DvdPlayer
+  -amplifier : Amplifier
+  -projector : Projector
+  -screen : Screen
+  -lights : TheaterLights
+  -movieActive : boolean
+  +HomeTheaterFacade()
+  +watchMovie(title : String) : void
+  +endMovie() : void
+  -resetTheater() : TheaterException
+}
+class DvdPlayer {
+  -on : boolean
+  -playing : boolean
+  -movie : String
+  +on() : void
+  +load(title : String) : void
+  +play() : void
+  +stop() : void
+  +off() : void
+  +isOn() : boolean
+  +isPlaying() : boolean
+}
+class Amplifier {
+  -on : boolean
+  -volume : int
+  -input : DvdPlayer
+  +on() : void
+  +selectInput(player : DvdPlayer) : void
+  +setVolume(level : int) : void
+  +playSound() : void
+  +off() : void
+  +isOn() : boolean
+  +getVolume() : int
+}
+class Projector {
+  -on : boolean
+  -wideScreen : boolean
+  +on() : void
+  +wideScreenMode() : void
+  +project(player : DvdPlayer, screen : Screen) : void
+  +off() : void
+  +isOn() : boolean
+  +isWideScreen() : boolean
+}
+class Screen {
+  -lowered : boolean
+  +lower() : void
+  +raise() : void
+  +isLowered() : boolean
+}
+class TheaterLights {
+  -brightness : int
+  +dim(level : int) : void
+  +on() : void
+  +getBrightness() : int
+}
+class TheaterException
+Client ..> HomeTheaterFacade : uses only
+HomeTheaterFacade --> "1" DvdPlayer : dvd
+HomeTheaterFacade --> "1" Amplifier : amplifier
+HomeTheaterFacade --> "1" Projector : projector
+HomeTheaterFacade --> "1" Screen : screen
+HomeTheaterFacade --> "1" TheaterLights : lights
+HomeTheaterFacade ..> TheaterException : reports failures
+Amplifier --> "0..1" DvdPlayer : input
+Projector ..> DvdPlayer : reads playback state
+Projector ..> Screen : checks position
+note bottom of HomeTheaterFacade
+  Package-private device constructor and
+  private power guards omitted for readability.
+end note
+@enduml

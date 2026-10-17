@@ -1,0 +1,32 @@
+PASS: Successful startup configures all devices
+PASS: Startup calls devices in dependency order
+PASS: Shutdown restores every device
+PASS: Shutdown before startup is safe
+PASS: Repeated shutdown is safe
+PASS: Two consecutive movie sessions work
+PASS: Duplicate startup preserves the current movie
+PASS: Null title is rejected before changing devices
+PASS: Blank title is rejected before changing devices
+PASS: Invalid title does not stop an active session
+PASS: Title whitespace is normalized by the player
+PASS: Startup failure is rolled back at lights
+PASS: Startup failure is rolled back at screen
+PASS: Startup failure is rolled back at dvdOn
+PASS: Startup failure is rolled back at load
+PASS: Startup failure is rolled back at projectorOn
+PASS: Startup failure is rolled back at wideScreen
+PASS: Startup failure is rolled back at amplifierOn
+PASS: Startup failure is rolled back at input
+PASS: Startup failure is rolled back at volume
+PASS: Startup failure is rolled back at play
+PASS: Startup failure is rolled back at project
+PASS: Startup failure is rolled back at sound
+PASS: Cleanup continues after two device failures and can be retried
+PASS: Startup cause and cleanup failure are both preserved
+PASS: DVD enforces power and loaded-media prerequisites
+PASS: Amplifier requires power and a playing input
+PASS: Volume rejects out-of-range values and accepts endpoints
+PASS: Projector checks screen position and playback state
+PASS: Lights reject out-of-range brightness and accept endpoints
+PASS: Subsystem is usable directly without the facade
+All 31 local behavioral scenarios passed.
